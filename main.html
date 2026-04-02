@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CHEAT SHEET · FIN11098</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #6366f1; --green: #059669; --blue: #0891b2;
+      --orange: #d97706; --red: #dc2626; --teal: #0d9488;
+      --light-purple: #ede9fe; --light-green: #d1fae5;
+      --light-blue: #e0f2fe; --light-orange: #fef3c7; --light-teal: #ccfbf1;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+      padding: 0 0 60px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #1e40af 100%);
+      color: white; padding: 40px 24px 36px; text-align: center;
+    }
+    .hero h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+    .hero p  { color: #a5b4fc; font-size: 14px; }
+
+    /* ── NAV TABS ── */
+    .tabs {
+      display: flex; overflow-x: auto; background: white;
+      border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; z-index: 10;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      padding: 14px 20px; font-size: 14px; font-weight: 600; color: #64748b;
+      cursor: pointer; border: none; background: none; white-space: nowrap;
+      border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s;
+    }
+    .tab:hover { color: var(--purple); }
+    .tab.active { color: var(--purple); border-bottom-color: var(--purple); }
+
+    /* ── SECTIONS ── */
+    .section { display: none; max-width: 820px; margin: 0 auto; padding: 28px 20px; }
+    .section.active { display: block; }
+
+    /* ── CARDS ── */
+    .card {
+      background: white; border-radius: 16px; padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 20px;
+    }
+    .card-title {
+      font-size: 17px; font-weight: 700; color: #1e1b4b;
+      margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+    }
+    .card p { font-size: 15px; line-height: 1.75; color: #334155; margin-bottom: 10px; }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight { border-radius: 10px; padding: 16px 18px; margin: 14px 0; font-size: 14px; line-height: 1.7; }
+    .highlight.purple { background: var(--light-purple); border-left: 4px solid var(--purple); color: #3730a3; }
+    .highlight.green  { background: var(--light-green);  border-left: 4px solid var(--green);  color: #065f46; }
+    .highlight.blue   { background: var(--light-blue);   border-left: 4px solid var(--blue);   color: #0e4f6f; }
+    .highlight.orange { background: var(--light-orange); border-left: 4px solid var(--orange); color: #78350f; }
+    .highlight.teal   { background: var(--light-teal);   border-left: 4px solid var(--teal);   color: #134e4a; }
+    .highlight.red    { background: #fee2e2; border-left: 4px solid #dc2626; color: #991b1b; }
+    .highlight strong { font-weight: 700; }
+
+    /* ── FORMULA ── */
+    .formula-box {
+      background: #1e1b4b; border-radius: 10px; padding: 16px 20px;
+      margin: 14px 0; font-family: 'Courier New', monospace; font-size: 14px;
+      color: #a5b4fc; line-height: 1.8;
+    }
+    .formula-box .f-title { color: #6ee7b7; font-weight: 700; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+    .formula-box span.val { color: #fcd34d; font-weight: 700; }
+    .formula-box .op  { color: #f472b6; }
+    .formula-box .var { color: #93c5fd; }
+
+    /* ── STEP BADGES ── */
+    .steps { display: flex; flex-direction: column; gap: 16px; }
+    .step { display: flex; gap: 14px; align-items: flex-start; }
+    .step-num {
+      min-width: 32px; height: 32px; border-radius: 50%;
+      background: var(--purple); color: white;
+      font-weight: 700; font-size: 14px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .step-content { font-size: 15px; line-height: 1.7; color: #334155; padding-top: 4px; }
+    .step-content strong { color: #1e1b4b; }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid #e2e8f0; margin: 14px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th { background: #1e1b4b; color: white; padding: 12px 14px; text-align: left; font-weight: 600; white-space: nowrap; }
+    td { padding: 11px 14px; border-bottom: 1px solid #f1f5f9; color: #334155; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    .td-right { text-align: right; font-family: 'Courier New', monospace; }
+    .td-neg { color: #dc2626; font-weight: 700; }
+    .td-pos { color: #059669; font-weight: 700; }
+    .total-row td { background: #ede9fe !important; font-weight: 700; color: #3730a3; border-top: 2px solid var(--purple); }
+    .highlight-row td { background: #d1fae5 !important; font-weight: 600; color: #065f46; }
+    .td-best { color: #6366f1; font-weight: 800; background: #ede9fe !important; }
+    .demi-note { font-size: 12px; color: #94a3b8; margin-top: 8px; }
+
+    /* ── GRID 2 cols ── */
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 580px) { .grid2 { grid-template-columns: 1fr; } }
+
+    /* ── MINI CARD ── */
+    .mini-card { background: white; border-radius: 12px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .mini-card .mc-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; margin-bottom: 6px; }
+    .mini-card .mc-val   { font-size: 22px; font-weight: 800; }
+    .mini-card .mc-sub   { font-size: 13px; color: #64748b; margin-top: 2px; }
+
+    /* ── CALCULATOR & EXERCICE ── */
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+    @media (max-width: 500px) { .calc-grid { grid-template-columns: 1fr; } }
+    .calc-group label { display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 5px; }
+    .calc-group input { width: 100%; padding: 10px 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 15px; color: #1e1b4b; outline: none; transition: border-color 0.2s; }
+    .calc-group input:focus { border-color: var(--purple); }
+    .calc-group .unit { font-size: 12px; color: #94a3b8; margin-top: 3px; }
+    
+    .calc-input-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+    .calc-field { flex: 1; min-width: 140px; }
+    .calc-field label { display: block; font-size: 12px; font-weight: 600; color: #64748b; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.4px; }
+    .calc-field input { width: 100%; padding: 10px 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 14px; color: #1e293b; outline: none; transition: border-color 0.2s; }
+    .calc-field input:focus { border-color: #6366f1; }
+    
+    .btn-calc, .calc-btn { width: 100%; padding: 13px; border-radius: 10px; border: none; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 16px; transition: transform 0.1s, opacity 0.2s; }
+    .btn-calc:hover, .calc-btn:hover { transform: scale(1.02); opacity: 0.9; }
+    #calc-result, #van-result { display: none; }
+    
+    .calc-result { margin-top: 16px; padding: 16px; border-radius: 12px; background: #f8fafc; border: 1px solid #e2e8f0; display: none; }
+    .calc-result.show { display: block; }
+    .calc-result-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+    .calc-result-row:last-child { border-bottom: none; font-weight: 700; font-size: 15px; }
+    .calc-result-row .label { color: #64748b; }
+    .calc-result-row .value { font-weight: 600; color: #1e1b4b; }
+    .calc-result-row .value.pos { color: #059669; }
+    .calc-result-row .value.neg { color: #dc2626; }
+
+    /* ── 7 ÉTAPES ── */
+    .mnemonic { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 12px 0; }
+    .mne-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; text-align: center; }
+    .mne-num { font-size: 20px; font-weight: 800; color: var(--purple); margin-bottom: 4px; }
+    .mne-label { font-size: 12px; color: #64748b; line-height: 1.4; }
+    .pill { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 12px; font-weight: 700; }
+    .pill.green { background: #d1fae5; color: #065f46; }
+    .pill.red   { background: #fee2e2; color: #991b1b; }
+    .pill.blue  { background: #dbeafe; color: #1e40af; }
+    .pill.orange{ background: #fef3c7; color: #92400e; }
+
+    #tab-sept-etapes .step { gap: 0; position: relative; align-items: stretch; }
+    #tab-sept-etapes .step-left { display: flex; flex-direction: column; align-items: center; width: 56px; flex-shrink: 0; }
+    #tab-sept-etapes .step-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: white; flex-shrink: 0; z-index: 1; }
+    #tab-sept-etapes .step-line { width: 2px; background: #e2e8f0; flex: 1; margin-top: 4px; margin-bottom: 4px; }
+    #tab-sept-etapes .step:last-child .step-line { display: none; }
+    #tab-sept-etapes .step-body { flex: 1; padding: 4px 0 24px 8px; }
+    #tab-sept-etapes .step-title { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 6px; margin-top: 6px; }
+    #tab-sept-etapes .step-desc { font-size: 14px; line-height: 1.7; color: #475569; }
+    #tab-sept-etapes .tbl-wrap { overflow-x: auto; margin: 14px 0; border-radius: 10px; border: 1px solid #e2e8f0; }
+    #tab-sept-etapes th { text-align: center; border-radius: 0; }
+    #tab-sept-etapes th:first-child { text-align: left; border-radius: 10px 0 0 0; }
+    #tab-sept-etapes th:last-child { border-radius: 0 10px 0 0; }
+    #tab-sept-etapes td { text-align: center; }
+    #tab-sept-etapes td:first-child { text-align: left; font-weight: 600; }
+
+    /* ── ACRONYMES ── */
+    .acr-wrap { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e40af 100%); padding: 32px 24px; border-radius: 20px; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+    .acr-header { text-align: center; margin-bottom: 24px; }
+    .acr-header h2 { font-size: 24px; font-weight: 800; margin-bottom: 6px; color: white; }
+    .acr-header p { color: #a5b4fc; font-size: 14px; }
+    .acr-search-wrap { max-width: 700px; margin: 0 auto 24px; }
+    #acr-search { width: 100%; padding: 13px 20px; border-radius: 12px; border: 2px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; font-size: 15px; outline: none; }
+    #acr-search::placeholder { color: #94a3b8; }
+    #acr-search:focus { border-color: rgba(255,255,255,0.5); }
+    .acr-grid { max-width: 700px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); gap: 12px; }
+    .acr-card { background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15); border-radius: 14px; padding: 18px; cursor: pointer; transition: all 0.2s; user-select: none; }
+    .acr-card:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+    .acr-card.active { border-color: var(--c); background: var(--c); }
+    .acr-card .emoji { font-size: 26px; margin-bottom: 8px; }
+    .acr-card .sigle { font-size: 22px; font-weight: 800; color: white; margin-bottom: 4px; }
+    .acr-card .nom { font-size: 12px; color: #a5b4fc; line-height: 1.4; }
+    .acr-card.active .nom { color: rgba(255,255,255,0.9); }
+    #acr-detail { display: none; max-width: 700px; margin: 20px auto 0; background: white; border-radius: 20px; padding: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: acrFadeIn 0.25s ease; color: #1e1b4b; text-align: left; }
+    @keyframes acrFadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+    .acr-detail-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+    .acr-anglais { font-size: 13px; color: #64748b; margin-bottom: 4px; }
+    .acr-sigle { font-size: 32px; font-weight: 800; }
+    .acr-nom { font-size: 16px; font-weight: 600; color: #1e1b4b; }
+    .acr-emoji { font-size: 40px; }
+    .acr-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; margin-bottom: 6px; }
+    .acr-def { font-size: 14px; line-height: 1.7; color: #334155; margin-bottom: 16px; }
+    .acr-formule-box { border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; }
+    .acr-formule-box code { font-size: 14px; color: #1e1b4b; font-family: 'Courier New', monospace; font-weight: 600; }
+    .acr-regle-box { background: #f8fafc; border-radius: 0 10px 10px 0; padding: 12px 16px; margin-bottom: 16px; }
+    .acr-regle-box p { font-size: 13px; color: #334155; line-height: 1.6; }
+    #acr-btn-close { background: transparent; border: none; color: #94a3b8; font-size: 13px; cursor: pointer; text-decoration: underline; padding: 0; }
+    .acr-no-result { text-align: center; color: #a5b4fc; font-size: 15px; padding: 40px 0; display: none; }
+
+    /* ── UI COMMUNE QUIZ (P1 & VF) ── */
+    .qp1-wrap { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e40af 100%); border-radius: 20px; padding: 32px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+    .qp1-header { text-align: center; margin-bottom: 20px; }
+    .qp1-header h1 { color: white; font-size: 22px; font-weight: 800; margin-bottom: 4px;}
+    .qp1-header p { color: #a5b4fc; font-size: 13px; }
+    .qp1-progress-wrap { width: 100%; max-width: 620px; margin-bottom: 14px; }
+    .qp1-progress-labels { display: flex; justify-content: space-between; color: #c7d2fe; font-size: 13px; margin-bottom: 6px; }
+    .qp1-progress-bar { background: rgba(255,255,255,0.15); border-radius: 99px; height: 6px; }
+    .qp1-progress-fill { background: linear-gradient(90deg, #6ee7b7, #3b82f6); height: 6px; border-radius: 99px; transition: width 0.4s; }
+    .qp1-card { background: white; border-radius: 20px; padding: 28px; max-width: 620px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.3); text-align: left;}
+    .qp1-badge { display: inline-block; background: #ede9fe; color: #7c3aed; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: 600; margin-bottom: 14px; }
+    .qp1-question { font-size: 17px; color: #1e1b4b; font-weight: 600; line-height: 1.6; margin-bottom: 22px; }
+    .qp1-option { display: flex; align-items: flex-start; gap: 12px; padding: 13px 16px; border-radius: 12px; border: 2px solid #e2e8f0; cursor: pointer; font-size: 15px; color: #334155; line-height: 1.5; margin-bottom: 10px; transition: all 0.2s; background: white; }
+    .qp1-option:hover:not(.disabled) { border-color: #6366f1; background: #ede9fe; color: #3730a3; }
+    .qp1-option.selected { border-color: #6366f1; background: #ede9fe; color: #3730a3; }
+    .qp1-option.correct { border-color: #22c55e; background: #dcfce7; color: #166534; cursor: default; }
+    .qp1-option.wrong   { border-color: #ef4444; background: #fee2e2; color: #991b1b; cursor: default; }
+    .qp1-option.disabled { cursor: default; color: #94a3b8; background: #f8fafc; border-color: #e2e8f0; }
+    .qp1-letter { min-width: 28px; height: 28px; border-radius: 50%; background: #e2e8f0; color: #64748b; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; transition: background 0.2s, color 0.2s; }
+    .qp1-option.selected .qp1-letter { background: #6366f1; color: white; }
+    .qp1-option.correct .qp1-letter { background: #22c55e; color: white; }
+    .qp1-option.wrong   .qp1-letter { background: #ef4444; color: white; }
+    .qp1-option.disabled .qp1-letter { background: #e2e8f0; color: #94a3b8; }
+    .qp1-explanation { margin-top: 18px; padding: 14px 18px; border-radius: 12px; font-size: 14px; line-height: 1.7; display: none; }
+    .qp1-explanation.show { display: block; }
+    .qp1-explanation.ok { background: #f0fdf4; border-left: 4px solid #22c55e; color: #374151; }
+    .qp1-explanation.ko { background: #fef9ec; border-left: 4px solid #f59e0b; color: #374151; }
+    .qp1-exp-title { font-weight: 700; margin-bottom: 6px; font-size: 14px; }
+    .qp1-btn-validate { width: 100%; margin-top: 20px; padding: 14px; border-radius: 12px; border: none; font-size: 15px; font-weight: 700; cursor: pointer; transition: background 0.2s; background: #e2e8f0; color: #94a3b8; }
+    .qp1-btn-validate.ready { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; }
+    .qp1-btn-validate.next  { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; }
+    .qp1-dots { display: flex; gap: 6px; margin-top: 18px; max-width: 600px; flex-wrap: wrap; justify-content: center; }
+    .qp1-dot { height: 8px; border-radius: 99px; transition: all 0.3s; background: rgba(255,255,255,0.3); width: 8px; }
+    .qp1-dot.active { background: white; width: 24px; }
+    .qp1-dot.done-ok { background: #6ee7b7; }
+    .qp1-dot.done-ko { background: #fca5a5; }
+    .qp1-results-card { background: white; border-radius: 24px; padding: 44px 36px; max-width: 480px; width: 100%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .qp1-medal { font-size: 64px; margin-bottom: 14px; }
+    .qp1-results-card h2 { font-size: 26px; color: #1e1b4b; margin-bottom: 8px; }
+    .qp1-results-card p { color: #64748b; margin-bottom: 24px; }
+    .qp1-score-box { background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 16px; padding: 22px; margin-bottom: 24px; }
+    .qp1-score-num { font-size: 50px; font-weight: 800; color: white; }
+    .qp1-score-sub { color: #c7d2fe; font-size: 15px; margin-top: 4px; }
+    .qp1-dots-result { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+    .qp1-dot-r { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; }
+    .qp1-dot-r.ok { background: #dcfce7; color: #16a34a; }
+    .qp1-dot-r.ko { background: #fee2e2; color: #dc2626; }
+    .qp1-btn-restart { width: 100%; padding: 14px; border-radius: 12px; border: none; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; font-size: 15px; font-weight: 700; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>📊 CHEAT SHEET</h1>
+  <p>Analyse économique et financière · FIN11098 · Guillaume Cavanagh</p>
+</div>
+
+<div class="tabs">
+  <button class="tab" onclick="showTab('quiz-vf')">✅ Q1 - Vrai/Faux</button> 
+  <button class="tab" onclick="showTab('quiz-p1')">🧪 Q1 - Choix multiples</button> 
+  <button class="tab" onclick="showTab('methode')">🔢 Q2 - Méthode</button>
+  <button class="tab" onclick="showTab('exemple')">📋 Q2 - Réponse examen</button>
+  <button class="tab" onclick="showTab('exercice')">🧮 Q3 - Réponse</button> 
+  <button class="tab" onclick="showTab('sept-etapes')">🗂️ Q4 - Méthode</button>
+  <button class="tab" onclick="showTab('calculateur')">🧮 Calculateur DPA</button>
+  <button class="tab" onclick="showTab('calc-van')">📈 Calculateur VAN</button>
+  <button class="tab active" onclick="showTab('concepts')">📖 Concepts</button>
+  <button class="tab" onclick="showTab('acronymes')">🔤 Acronymes</button>
+</div>
+
+<div class="section" id="tab-quiz-vf">
+  <div class="qp1-wrap">
+    <div id="qvf-quiz-view" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+      <div class="qp1-header">
+        <h1>✅ Quiz — Vrai ou Faux (20 Questions)</h1>
+        <p>Théorie du Module 3 : Risque, Fiscalité et Méthodes d'évaluation</p>
+      </div>
+
+      <div class="qp1-progress-wrap">
+        <div class="qp1-progress-labels">
+          <span id="qvf-prog-label">Question 1 / 20</span>
+          <span id="qvf-score-label">Score : 0 ✓</span>
+        </div>
+        <div class="qp1-progress-bar"><div class="qp1-progress-fill" id="qvf-prog-fill" style="width:0%"></div></div>
+      </div>
+
+      <div class="qp1-card">
+        <p class="qp1-question" id="qvf-q-text"></p>
+        <div id="qvf-options"></div>
+        <div class="qp1-explanation" id="qvf-explanation">
+          <div class="qp1-exp-title" id="qvf-exp-title"></div>
+          <span id="qvf-exp-text"></span>
+        </div>
+        <button class="qp1-btn-validate" id="qvf-btn-main" onclick="qvf_handleMain()" disabled>Valider ma réponse</button>
+      </div>
+
+      <div class="qp1-dots" id="qvf-dots"></div>
+    </div>
+
+    <div id="qvf-results" style="display:none; flex-direction: column; align-items: center;">
+      <div class="qp1-results-card">
+        <div class="qp1-medal" id="qvf-r-medal"></div>
+        <h2>Quiz terminé !</h2>
+        <p id="qvf-r-msg"></p>
+        <div class="qp1-score-box">
+          <div class="qp1-score-num" id="qvf-r-score"></div>
+          <div class="qp1-score-sub" id="qvf-r-pct"></div>
+        </div>
+        <div class="qp1-dots-result" id="qvf-r-dots"></div>
+        <button class="qp1-btn-restart" onclick="qvf_restart()">🔄 Recommencer le quiz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="tab-quiz-p1">
+  <div class="qp1-wrap">
+    <div id="qp1-quiz-view" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+      <div class="qp1-header">
+        <h1>🧪 Quiz — Choix Multiples</h1>
+        <p>Analyse économique et financière · FIN11098</p>
+      </div>
+
+      <div class="qp1-progress-wrap">
+        <div class="qp1-progress-labels">
+          <span id="qp1-prog-label">Question 1 / 15</span>
+          <span id="qp1-score-label">Score : 0 ✓</span>
+        </div>
+        <div class="qp1-progress-bar"><div class="qp1-progress-fill" id="qp1-prog-fill" style="width:0%"></div></div>
+      </div>
+
+      <div class="qp1-card">
+        <div class="qp1-badge" id="qp1-q-badge"></div>
+        <p class="qp1-question" id="qp1-q-text"></p>
+        <div id="qp1-options"></div>
+        <div class="qp1-explanation" id="qp1-explanation">
+          <div class="qp1-exp-title" id="qp1-exp-title"></div>
+          <span id="qp1-exp-text"></span>
+        </div>
+        <button class="qp1-btn-validate" id="qp1-btn-main" onclick="qp1_handleMain()" disabled>Valider ma réponse</button>
+      </div>
+
+      <div class="qp1-dots" id="qp1-dots"></div>
+    </div>
+
+    <div id="qp1-results" style="display:none; flex-direction: column; align-items: center;">
+      <div class="qp1-results-card">
+        <div class="qp1-medal" id="qp1-r-medal"></div>
+        <h2>Quiz terminé !</h2>
+        <p id="qp1-r-msg"></p>
+        <div class="qp1-score-box">
+          <div class="qp1-score-num" id="qp1-r-score"></div>
+          <div class="qp1-score-sub" id="qp1-r-pct"></div>
+        </div>
+        <div class="qp1-dots-result" id="qp1-r-dots"></div>
+        <button class="qp1-btn-restart" onclick="qp1_restart()">🔄 Recommencer le quiz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section active" id="tab-concepts">
+
+  <div class="card">
+    <div class="card-title">🏛️ Qu'est-ce que la DPA ?</div>
+    <p>La <strong>DPA (Déduction pour Amortissement)</strong> est la méthode d'amortissement <strong>fiscal</strong> utilisée au Canada. Elle permet aux entreprises de déduire la perte de valeur d'un actif de leurs revenus imposables, ce qui réduit l'impôt à payer.</p>
+    <p>⚠️ La DPA est une charge <strong>non monétaire</strong> : aucun argent ne sort réellement. Ce qui entre dans les flux de trésorerie, c'est uniquement l'<strong>économie d'impôt</strong> qu'elle génère.</p>
+    <div class="highlight purple">
+      <strong>Règle clé :</strong> DPA ≠ flux de trésorerie. Seule l'économie d'impôt (= DPA × taux d'imposition) est incluse dans les flux du projet.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📉 Comment fonctionne le solde dégressif ?</div>
+    <p>Au Canada, la DPA est calculée sur le <strong>solde dégressif</strong> : chaque année, on applique le taux DPA sur la <strong>FNACC</strong> (valeur fiscale résiduelle), et non sur le coût d'achat original.</p>
+    <p>Résultat : les DPA sont <strong>décroissantes</strong> dans le temps. Les premières années génèrent les plus grandes économies d'impôt.</p>
+    <div class="highlight blue">
+      <strong>FNACC</strong> = Fraction Non Amortie du Coût en Capital<br>
+      C'est la valeur restante à amortir après chaque année.
+    </div>
+    <div class="formula-box">
+      <div class="f-title">Calcul année par année</div>
+      DPA_t = FNACC_t × taux DPA<br>
+      FNACC_{t+1} = FNACC_t − DPA_t
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🍂 La règle de la demi-année (CRITIQUE!)</div>
+    <p>Au Canada, une règle fiscale stipule que lors de l'<strong>année d'acquisition</strong> d'un actif, on ne peut amortir que <strong>50 % de la DPA normale</strong>.</p>
+    <p>Concrètement : en An 1, la FNACC de départ est réduite de moitié pour le calcul de la DPA.</p>
+    <div class="highlight orange">
+      <strong>An 1 uniquement :</strong> DPA = Coût × taux DPA × <strong>50 %</strong><br>
+      <strong>Dès An 2 :</strong> DPA = FNACC restante × taux DPA (taux plein)
+    </div>
+    <div class="formula-box">
+      <div class="f-title">Exemple — Équipement 100 000 $, taux 30 %</div>
+      An 1 : FNACC = <span class="val">50 000</span> $ (100 000 × 50%) → DPA = <span class="val">15 000</span> $<br>
+      An 2 : FNACC = <span class="val">85 000</span> $ (100 000 − 15 000) → DPA = <span class="val">25 500</span> $
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💰 L'économie d'impôt</div>
+    <p>Chaque dollar de DPA réduit le revenu imposable → l'entreprise paie moins d'impôt. C'est ce qu'on appelle l'<strong>économie d'impôt</strong>.</p>
+    <div class="formula-box">
+      <div class="f-title">Formule</div>
+      Économie d'impôt_t = DPA_t × Taux d'imposition<br><br>
+      Valeur actuelle (VA) = Éco_t ÷ (1 + taux d'actualisation)^t
+    </div>
+    <p>On actualise chaque économie d'impôt pour la ramener en dollars d'aujourd'hui, puis on additionne le tout pour obtenir la <strong>valeur actuelle totale des économies d'impôt</strong>.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📤 Disposition d'actif — vente en fin de projet</div>
+    <p>Quand on vend un actif en fin de projet et que la <strong>classe d'actif ferme</strong>, il faut comparer le prix de vente à la FNACC restante :</p>
+    <div class="grid2">
+      <div class="highlight green">
+        <strong>Vente &gt; FNACC</strong><br>
+        → Récupération d'amortissement<br>
+        → Imposable à 100 %<br>
+        → Impôt = (Vente − FNACC) × TI
+      </div>
+      <div class="highlight orange">
+        <strong>Vente &lt; FNACC</strong><br>
+        → Perte finale<br>
+        → Déductible à 100 %<br>
+        → Économie = (FNACC − Vente) × TI
+      </div>
+    </div>
+    <p>Si la classe d'actif <strong>ne ferme pas</strong> (d'autres actifs restent dans la classe), on ne calcule pas de perte finale — on continue simplement à amortir le solde résiduel.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 Règles d'inclusion et d'exclusion des flux</div>
+    <p>Pour éviter les erreurs courantes lors du calcul de la VAN, voici ce qu'il faut retenir :</p>
+    <div class="grid2">
+      <div class="highlight green" style="margin-top:0">
+        <strong>✅ À INCLURE dans les flux :</strong><br><br>
+        1. <strong>Économies d'impôt</strong> liées à la DPA<br>
+        2. <strong>Flux d'exploitation</strong> après impôt (seulement les flux additionnels)<br>
+        3. <strong>Valeur de revente</strong> de l'équipement à la fin<br>
+        4. <strong>Impact fiscal</strong> de la vente (Récupération d'amortissement ou Perte finale)
+      </div>
+      <div class="highlight orange" style="margin-top:0">
+        <strong>🚫 À EXCLURE absolument :</strong><br><br>
+        • <strong>La DPA elle-même :</strong> Ce n'est pas un décaissement (seule son économie d'impôt compte).<br>
+        • <strong>Frais de financement (intérêts) :</strong> Ils sont déjà pris en compte dans le taux d'actualisation (CMPC).<br>
+        • <strong>Coûts irrécupérables (sunk costs) :</strong> Dépenses déjà engagées (ex: étude de marché déjà payée).
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="section" id="tab-methode">
+
+  <div class="card">
+    <div class="card-title">🔢 Les 5 étapes pour calculer la VA des économies d'impôt</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content"><strong>Identifier les paramètres :</strong> Coût de l'actif (C), taux DPA (d), taux d'imposition (TI), taux d'actualisation (r), nombre d'années (n).</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content"><strong>Appliquer la règle de la demi-année à l'An 1 :</strong><br>FNACC début An 1 = C × 50 % → DPA An 1 = FNACC × d</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content"><strong>Calculer la FNACC et la DPA pour chaque année :</strong><br>FNACC_{t} = FNACC_{t-1} − DPA_{t-1} → DPA_t = FNACC_t × d</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content"><strong>Calculer l'économie d'impôt de chaque année :</strong><br>Économie_t = DPA_t × TI</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content"><strong>Actualiser chaque économie et additionner :</strong><br>VA totale = Σ [ Économie_t ÷ (1 + r)^t ]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Template de tableau à reproduire à l'examen</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Année (t)</th>
+            <th>FNACC début</th>
+            <th>DPA (× taux)</th>
+            <th>FNACC fin</th>
+            <th>Éco. d'impôt (× TI)</th>
+            <th>Facteur (1+r)^t</th>
+            <th>VA Éco. d'impôt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td><td class="td-right">C × 50 %</td><td class="td-right">× d</td>
+            <td class="td-right">FNACC − DPA</td><td class="td-right">DPA × TI</td>
+            <td class="td-right">(1+r)¹</td><td class="td-right">÷ (1+r)¹</td>
+          </tr>
+          <tr>
+            <td>2</td><td class="td-right">FNACC fin An1</td><td class="td-right">× d</td>
+            <td class="td-right">FNACC − DPA</td><td class="td-right">DPA × TI</td>
+            <td class="td-right">(1+r)²</td><td class="td-right">÷ (1+r)²</td>
+          </tr>
+          <tr>
+            <td>3</td><td class="td-right">FNACC fin An2</td><td class="td-right">× d</td>
+            <td class="td-right">FNACC − DPA</td><td class="td-right">DPA × TI</td>
+            <td class="td-right">(1+r)³</td><td class="td-right">÷ (1+r)³</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="6"><strong>TOTAL — VA des économies d'impôt</strong></td>
+            <td class="td-right">Σ VA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="demi-note">* La FNACC début de l'An 1 est C × 50 % à cause de la règle de la demi-année. La FNACC réelle (pour les années suivantes) est C − DPA An 1.</p>
+  </div>
+</div>
+
+<div id="tab-exercice" class="section">
+
+  <div class="card">
+    <div class="card-title">🧮 Exercice — Projets A, B, C (données de l'examen)</div>
+    <p style="margin-bottom:14px">Vous disposez des flux monétaires suivants pour 3 projets. Taux d'actualisation : <strong>10%</strong></p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th>Projet A</th><th>Projet B</th><th>Projet C</th></tr></thead>
+        <tbody>
+          <tr><td>Investissement</td><td class="td-neg">-800 000 $</td><td class="td-neg">-600 000 $</td><td class="td-neg">-100 000 $</td></tr>
+          <tr><td>An 1</td><td>200 000 $</td><td>252 000 $</td><td>10 000 $</td></tr>
+          <tr><td>An 2</td><td>200 000 $</td><td>200 000 $</td><td>20 000 $</td></tr>
+          <tr><td>An 3</td><td>200 000 $</td><td>160 000 $</td><td>30 000 $</td></tr>
+          <tr><td>An 4</td><td>200 000 $</td><td>120 000 $</td><td>40 000 $</td></tr>
+          <tr><td>An 5</td><td>200 000 $</td><td>80 000 $</td><td>50 000 $</td></tr>
+          <tr><td>An 6</td><td>200 000 $</td><td>40 000 $</td><td>60 000 $</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="calc-btn" onclick="calculateAll()">🧮 Calculer VAN, DR et DRA pour les 3 projets</button>
+
+    <div id="results-all" class="calc-result">
+      </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Tableau de comparaison détaillé</div>
+    <div id="compare-section" style="display:none">
+      <div id="van-table"></div>
+      <div id="dr-table" style="margin-top:16px"></div>
+      <div id="dra-table" style="margin-top:16px"></div>
+      <div id="decision-box" style="margin-top:16px"></div>
+    </div>
+    <div id="compare-placeholder" style="color:#94a3b8; font-size:14px; text-align:center; padding:20px">
+      Cliquez sur "Calculer" ci-dessus pour afficher les tableaux détaillés
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔢 Calculatrice VAN (annuité constante)</div>
+    <p style="margin-bottom:14px; font-size:14px">Pour des flux constants sur plusieurs années :</p>
+    <div class="calc-input-row">
+      <div class="calc-field">
+        <label>Investissement initial ($)</label>
+        <input type="number" id="c-invest" placeholder="ex: 800000" value="800000">
+      </div>
+      <div class="calc-field">
+        <label>Flux annuel constant ($)</label>
+        <input type="number" id="c-flux" placeholder="ex: 200000" value="200000">
+      </div>
+      <div class="calc-field">
+        <label>Taux d'actualisation (%)</label>
+        <input type="number" id="c-taux" placeholder="ex: 10" value="10">
+      </div>
+      <div class="calc-field">
+        <label>Nombre d'années (n)</label>
+        <input type="number" id="c-annees" placeholder="ex: 6" value="6">
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calculateCustomVAN()">Calculer la VAN</button>
+    <div id="custom-result" class="calc-result">
+      <div class="calc-result-row">
+        <span class="label">Investissement initial</span>
+        <span id="r-invest" class="value"></span>
+      </div>
+      <div class="calc-result-row">
+        <span class="label">Facteur d'actualisation annuité</span>
+        <span id="r-fa" class="value"></span>
+      </div>
+      <div class="calc-result-row">
+        <span class="label">VA des flux</span>
+        <span id="r-va" class="value"></span>
+      </div>
+      <div class="calc-result-row">
+        <span class="label" style="font-weight:700">VAN</span>
+        <span id="r-van" class="value"></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="tab-sept-etapes" class="section">
+
+  <div class="card">
+    <div class="card-title">🗂️ Les 7 étapes de l'analyse d'investissement (contexte fiscal canadien)</div>
+    <p style="margin-bottom:16px">Dans le contexte fiscal canadien, l'amortissement fiscal (DPA) crée des économies d'impôt qui doivent être calculées séparément des flux monétaires d'exploitation.</p>
+
+    <div class="mnemonic">
+      <div class="mne-item"><div class="mne-num">1</div><div class="mne-label">Sortie de fonds<br>initiale</div></div>
+      <div class="mne-item"><div class="mne-num">2</div><div class="mne-label">Économies d'impôt<br>DPA</div></div>
+      <div class="mne-item"><div class="mne-num">3</div><div class="mne-label">Entrées de fonds<br>additionnelles</div></div>
+      <div class="mne-item"><div class="mne-num">4</div><div class="mne-label">Sorties de fonds<br>évitées</div></div>
+      <div class="mne-item"><div class="mne-num">5</div><div class="mne-label">Entrées/Sorties<br>ponctuelles</div></div>
+      <div class="mne-item"><div class="mne-num">6</div><div class="mne-label">Montants<br>récupérés</div></div>
+      <div class="mne-item"><div class="mne-num">7</div><div class="mne-label">Charges fiscales<br>disposition</div></div>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num" style="background:#dc2626">1</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-title">Sortie de fonds initiale <span class="pill red">Négatif</span></div>
+        <div class="step-desc">
+          C'est le montant investi au départ (An 0). Il s'agit du coût d'acquisition de l'équipement ou de l'actif.<br><br>
+          <strong>À inclure :</strong> prix d'achat, installation, formation initiale, variation du BFR (fonds de roulement)<br>
+          <strong>À EXCLURE :</strong> coûts irrécupérables (sunk costs), frais de financement / intérêts
+        </div>
+        <div class="formula-box" style="margin-top:12px">
+          <div class="f-title">Exemple TechnoFab</div>
+          <span class="val">Étape 1</span> <span class="op">= -</span><span class="var">250 000 $</span><br>
+          <span class="op">→</span> Étude de marché 50 000 $ <span class="val">= coût irrécupérable → EXCLURE</span><br>
+          <span class="op">→</span> Frais financiers 20 000 $ <span class="val">= dans le CMPC → EXCLURE</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num" style="background:#6366f1">2</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-title">Économies d'impôt liées à l'amortissement fiscal (DPA) <span class="pill blue">Positif</span></div>
+        <div class="step-desc">
+          Au Canada, l'ARC reconnaît la DPA (et non l'amortissement comptable) comme dépense fiscale. Cela réduit l'impôt payable chaque année → <strong>économie d'impôt</strong>.
+        </div>
+        <div class="formula-box" style="margin-top:12px">
+          <div class="f-title">Calcul DPA — Méthode du solde dégressif + règle de la demi-année</div>
+          <span class="var">An 1 :</span> FNACC début = <span class="val">Coût</span>, Amort = FNACC × <span class="val">d × 50%</span> (règle demi-année)<br>
+          <span class="var">An 2+:</span> Amort = FNACC début × <span class="val">d</span><br>
+          <span class="var">Économie impôt</span> = Amortissement × <span class="val">T</span><br>
+          <span class="var">VA économie</span> = Économie impôt × <span class="val">FA(k, t)</span>
+        </div>
+        <div class="highlight blue" style="margin-top:12px">
+          <strong>Règle de la demi-année :</strong> L'ARC présume que tout actif acquis au cours d'une année l'est au milieu de l'année. Donc <strong>An 1 → amortissement × 50%</strong>.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num" style="background:#059669">3</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-title">Entrées de fonds additionnelles <span class="pill green">Positif</span></div>
+        <div class="step-desc">
+          Revenus <em>additionnels</em> (marginaux) générés par le projet, nets d'impôt. On utilise l'<strong>analyse marginale</strong> : seulement ce que le projet ajoute.
+        </div>
+        <div class="formula-box" style="margin-top:12px">
+          <div class="f-title">Formule</div>
+          <span class="val">FM net après-impôt</span> = <span class="var">Revenus additionnels</span> × <span class="op">(1 - T)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num" style="background:#0891b2">4</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-title">Sorties de fonds évitées <span class="pill green">Positif</span></div>
+        <div class="step-desc">
+          Coûts d'exploitation qui <strong>disparaissent</strong> grâce au projet (ex. : économies de main-d'œuvre, matières, énergie). Ils sont traités comme des entrées de fonds nets d'impôt.
+        </div>
+        <div class="formula-box" style="margin-top:12px">
+          <div class="f-title">Formule</div>
+          <span class="val">Sorties évitées nettes</span> = <span class="var">Économies de coûts</span> × <span class="op">(1 - T)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num" style="background:#d97706">5</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-title">Sorties et entrées de fonds ponctuelles <span class="pill orange">Variable</span></div>
+        <div class="step-desc">
+          Flux non récurrents survenant <em>pendant</em> la durée du projet (ex. : remplacement partiel d'équipement, variation du fonds de roulement en cours de projet).
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num" style="background:#7c3aed">6</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-title">Montants récupérés à la fin du projet <span class="pill blue">Positif</span></div>
+        <div class="step-desc">
+          À la fin du projet, l'actif peut être vendu (valeur résiduelle). On récupère aussi le <strong>fonds de roulement</strong> investi au départ.
+        </div>
+        <div class="formula-box" style="margin-top:12px">
+          <div class="f-title">Formule</div>
+          <span class="val">VA récupération</span> = <span class="var">Prix de vente</span> × <span class="op">FA(k, n)</span><br>
+          <span class="val">VA BFR</span> = <span class="var">Fonds de roulement initial</span> × <span class="op">FA(k, n)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num" style="background:#0f172a">7</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-title">Charges fiscales liées à la disposition d'actif <span class="pill red">Négatif si gain</span></div>
+        <div class="step-desc">
+          Si le prix de vente diffère du FNACC au moment de la vente → <strong>impôt ou économie fiscale</strong> sur la différence.
+        </div>
+        <div class="formula-box" style="margin-top:12px">
+          <div class="f-title">Récupération d'amortissement (si vente > FNACC)</div>
+          <span class="var">Récupération</span> = Prix de vente - FNACC<br>
+          <span class="val">Impôt additionnel</span> = Récupération × <span class="val">T</span> <span class="op">→ NÉGATIF dans la VAN</span>
+        </div>
+        <div class="formula-box">
+          <div class="f-title">Perte finale (si vente &lt; FNACC)</div>
+          <span class="var">Perte</span> = FNACC - Prix de vente<br>
+          <span class="val">Économie d'impôt</span> = Perte × <span class="val">T</span> <span class="op">→ POSITIF dans la VAN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="tab-exemple">
+
+  <div class="card">
+    <div class="card-title">📋 Question de l'examen — Données</div>
+    <div class="grid2">
+      <div class="mini-card"><div class="mc-label">Coût de l'équipement</div><div class="mc-val" style="color:var(--purple)">100 000 $</div></div>
+      <div class="mini-card"><div class="mc-label">Taux DPA (dégressif)</div><div class="mc-val" style="color:var(--blue)">30 %</div></div>
+      <div class="mini-card"><div class="mc-label">Taux d'imposition</div><div class="mc-val" style="color:var(--orange)">40 %</div></div>
+      <div class="mini-card"><div class="mc-label">Taux d'actualisation</div><div class="mc-val" style="color:var(--green)">10 %</div></div>
+    </div>
+    <div class="highlight blue" style="margin-top:14px">
+      <strong>Période :</strong> 5 ans · Secteur : transport
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔢 Calcul complet — Tableau des économies d'impôt</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>An</th>
+            <th>FNACC début</th>
+            <th>DPA (30 %)</th>
+            <th>FNACC fin</th>
+            <th>Éco. impôt (×40 %)</th>
+            <th>Facteur 1,10^t</th>
+            <th>VA Éco. impôt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1 *</strong></td>
+            <td class="td-right">50 000 $</td>
+            <td class="td-right">15 000 $</td>
+            <td class="td-right">85 000 $</td>
+            <td class="td-right">6 000 $</td>
+            <td class="td-right">1,1000</td>
+            <td class="td-right"><strong>5 455 $</strong></td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td class="td-right">85 000 $</td>
+            <td class="td-right">25 500 $</td>
+            <td class="td-right">59 500 $</td>
+            <td class="td-right">10 200 $</td>
+            <td class="td-right">1,2100</td>
+            <td class="td-right"><strong>8 430 $</strong></td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td>
+            <td class="td-right">59 500 $</td>
+            <td class="td-right">17 850 $</td>
+            <td class="td-right">41 650 $</td>
+            <td class="td-right">7 140 $</td>
+            <td class="td-right">1,3310</td>
+            <td class="td-right"><strong>5 366 $</strong></td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td class="td-right">41 650 $</td>
+            <td class="td-right">12 495 $</td>
+            <td class="td-right">29 155 $</td>
+            <td class="td-right">4 998 $</td>
+            <td class="td-right">1,4641</td>
+            <td class="td-right"><strong>3 414 $</strong></td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td>
+            <td class="td-right">29 155 $</td>
+            <td class="td-right">8 747 $</td>
+            <td class="td-right">20 409 $</td>
+            <td class="td-right">3 499 $</td>
+            <td class="td-right">1,6105</td>
+            <td class="td-right"><strong>2 173 $</strong></td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="6"><strong>VA totale des économies d'impôt</strong></td>
+            <td class="td-right"><strong>24 838 $</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="demi-note">* An 1 : FNACC = 100 000 × 50 % = 50 000 $ (règle de la demi-année). La FNACC réelle après An 1 = 100 000 − 15 000 = 85 000 $.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">✍️ Réponse à la question 2 (3 points) — Vendre ou garder ?</div>
+    <p><strong>Question :</strong> La décision de garder ou de vendre l'équipement à la fin du projet a-t-elle un impact sur l'économie d'impôt ?</p>
+    <div class="highlight green">
+      <strong>Réponse : OUI, et voici pourquoi :</strong><br><br>
+      • Si on <strong>garde</strong> l'équipement → la FNACC continue à être amortie dans les années suivantes → on continue à générer des économies d'impôt futures.<br><br>
+      • Si on <strong>vend</strong> l'équipement et que la <strong>classe d'actif ferme</strong> :<br>
+      &nbsp;&nbsp;– Prix de vente &gt; FNACC → <strong>récupération d'amortissement</strong> → impôt supplémentaire à payer<br>
+      &nbsp;&nbsp;– Prix de vente &lt; FNACC → <strong>perte finale</strong> → économie d'impôt additionnelle<br><br>
+      • Si on vend mais que la <strong>classe reste ouverte</strong> (d'autres actifs dans la classe) → on soustrait simplement le prix de vente de la FNACC, sans récupération ni perte finale.
+    </div>
+  </div>
+</div>
+
+<div class="section" id="tab-calculateur">
+  <div class="card">
+    <div class="card-title">🧮 Calculateur de DPA interactif</div>
+    <p style="margin-bottom:16px">Entre tes propres chiffres pour recalculer automatiquement le tableau des économies d'impôt.</p>
+
+    <div class="calc-grid">
+      <div class="calc-group">
+        <label>Coût de l'actif (C)</label>
+        <input type="number" id="c-cout" value="100000" min="0">
+        <div class="unit">en dollars ($)</div>
+      </div>
+      <div class="calc-group">
+        <label>Taux DPA (%)</label>
+        <input type="number" id="c-dpa" value="30" min="0" max="100">
+        <div class="unit">ex : 30 pour 30 %</div>
+      </div>
+      <div class="calc-group">
+        <label>Taux d'imposition (%)</label>
+        <input type="number" id="c-ti" value="40" min="0" max="100">
+        <div class="unit">ex : 40 pour 40 %</div>
+      </div>
+      <div class="calc-group">
+        <label>Taux d'actualisation (%)</label>
+        <input type="number" id="c-ta" value="10" min="0" max="100">
+        <div class="unit">ex : 10 pour 10 %</div>
+      </div>
+      <div class="calc-group">
+        <label>Nombre d'années</label>
+        <input type="number" id="c-n" value="5" min="1" max="20">
+        <div class="unit">horizon du projet</div>
+      </div>
+    </div>
+    <button class="btn-calc" onclick="calcDPA()">📊 Calculer le tableau DPA</button>
+
+    <div id="calc-result">
+      <div class="table-wrap">
+        <table id="calc-table">
+          <thead>
+            <tr>
+              <th>An</th><th>FNACC début</th><th>DPA</th>
+              <th>FNACC fin</th><th>Éco. impôt</th>
+              <th>Facteur</th><th>VA Éco. impôt</th>
+            </tr>
+          </thead>
+          <tbody id="calc-body"></tbody>
+        </table>
+      </div>
+      <div class="highlight green" id="calc-total" style="margin-top:12px;font-size:15px;"></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="tab-calc-van">
+  <div class="card">
+    <div class="card-title">📈 Calculateur de Valeur Actuelle Nette (VAN)</div>
+    <p style="margin-bottom:16px">Entre l'investissement initial, le taux d'actualisation et les flux monétaires générés chaque année pour savoir si le projet est rentable.</p>
+
+    <div class="calc-grid">
+      <div class="calc-group">
+        <label>Investissement initial (Sortie An 0)</label>
+        <input type="number" id="v-inv" value="100000" min="0">
+        <div class="unit">montant positif qui sera soustrait</div>
+      </div>
+      <div class="calc-group">
+        <label>Taux d'actualisation (CMPC %)</label>
+        <input type="number" id="v-taux" value="10" min="0" max="100">
+        <div class="unit">ex : 10 pour 10 %</div>
+      </div>
+      <div class="calc-group">
+        <label>Nombre d'années du projet</label>
+        <input type="number" id="v-n" value="5" min="1" max="20" onchange="generateVanFields()">
+        <div class="unit">modifie ce champ pour changer le tableau</div>
+      </div>
+    </div>
+
+    <div id="van-dynamic-fields" class="calc-grid" style="margin-top:16px; border-top:2px dashed #e2e8f0; padding-top:16px;">
+      </div>
+
+    <button class="btn-calc" onclick="calcVAN()" style="margin-top: 16px;">📊 Calculer la VAN</button>
+
+    <div id="van-result-container" style="display:none">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>An</th>
+              <th class="td-right">Flux Monétaire ($)</th>
+              <th class="td-right">Facteur 1/(1+r)^t</th>
+              <th class="td-right">Valeur Actuelle (VA)</th>
+            </tr>
+          </thead>
+          <tbody id="van-body"></tbody>
+        </table>
+      </div>
+      <div id="van-total" style="margin-top:12px;font-size:15px;"></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="tab-acronymes">
+  <div class="acr-wrap">
+    <div class="acr-header">
+      <h2>🔤 Guide des acronymes</h2>
+      <p>Clique sur une carte pour voir les définitions et les formules</p>
+    </div>
+
+    <div class="acr-search-wrap">
+      <input id="acr-search" type="text" placeholder="🔍 Rechercher un acronyme ou un mot-clé...">
+    </div>
+
+    <div class="acr-grid" id="acr-grid"></div>
+    <p class="acr-no-result" id="acr-no-result">Aucun acronyme trouvé pour cette recherche.</p>
+
+    <div id="acr-detail">
+      <div class="acr-detail-top">
+        <div>
+          <div class="acr-anglais" id="ad-anglais"></div>
+          <div class="acr-sigle" id="ad-sigle"></div>
+          <div class="acr-nom" id="ad-nom"></div>
+        </div>
+        <div class="acr-emoji" id="ad-emoji"></div>
+      </div>
+      <div class="acr-label">Définition</div>
+      <p class="acr-def" id="ad-definition"></p>
+      <div class="acr-formule-box" id="ad-formule-box">
+        <div class="acr-label" id="ad-formule-label">Formule</div>
+        <code id="ad-formule"></code>
+      </div>
+      <div class="acr-regle-box" id="ad-regle-box">
+        <div class="acr-label">À retenir</div>
+        <p id="ad-regle"></p>
+      </div>
+      <button id="acr-btn-close">✕ Fermer le détail</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Tabs ──
+function showTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── Calculator Formatter ──
+function fmt(n) { return n.toLocaleString('fr-CA', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' $'; }
+function fmtAns(n, decimals=2) { return n.toFixed(decimals) + ' ans'; }
+function pv(flow, k, t) { return flow / Math.pow(1 + k, t); }
+
+// ── EXERCICE INTERACTIF LOGIC (Q3 - Réponse) ──
+const projects = {
+  A: { invest: 800000, flows: [200000, 200000, 200000, 200000, 200000, 200000] },
+  B: { invest: 600000, flows: [252000, 200000, 160000, 120000, 80000, 40000] },
+  C: { invest: 100000, flows: [10000, 20000, 30000, 40000, 50000, 60000] }
+};
+const ex_k = 0.10;
+
+function calcProjectVAN(invest, flows, rate) {
+  let van = -invest;
+  flows.forEach((f, i) => van += pv(f, rate, i + 1));
+  return van;
+}
+
+function calcDR(invest, flows) {
+  let cumul = 0;
+  for (let i = 0; i < flows.length; i++) {
+    const prev = cumul;
+    cumul += flows[i];
+    if (cumul >= invest) {
+      const remaining = invest - prev;
+      return (i) + remaining / flows[i];
+    }
+  }
+  return null;
+}
+
+function calcDRA(invest, flows, rate) {
+  let cumul = 0;
+  for (let i = 0; i < flows.length; i++) {
+    const pvFlow = pv(flows[i], rate, i + 1);
+    const prev = cumul;
+    cumul += pvFlow;
+    if (cumul >= invest) {
+      const remaining = invest - prev;
+      return (i) + remaining / pvFlow;
+    }
+  }
+  return null;
+}
+
+function calculateAll() {
+  const results = {};
+  ['A', 'B', 'C'].forEach(name => {
+    const p = projects[name];
+    results[name] = {
+      van: calcProjectVAN(p.invest, p.flows, ex_k),
+      dr: calcDR(p.invest, p.flows),
+      dra: calcDRA(p.invest, p.flows, ex_k)
+    };
+  });
+
+  const bestVAN = Math.max(...['A','B','C'].map(n => results[n].van));
+  const bestDR  = Math.min(...['A','B','C'].filter(n => results[n].dr !== null).map(n => results[n].dr));
+  const bestDRA = Math.min(...['A','B','C'].filter(n => results[n].dra !== null).map(n => results[n].dra));
+
+  const r = document.getElementById('results-all');
+  r.innerHTML = `
+    <div class="calc-result-row"><span class="label" style="font-weight:700;font-size:15px">Résultats calculés ✅</span></div>
+    <div class="calc-result-row">
+      <span class="label">VAN — Projet A</span>
+      <span class="value ${results.A.van===bestVAN?'pos':''}">${fmt(results.A.van)}${results.A.van===bestVAN?' 🏆':''}</span>
+    </div>
+    <div class="calc-result-row">
+      <span class="label">VAN — Projet B</span>
+      <span class="value ${results.B.van===bestVAN?'pos':''}">${fmt(results.B.van)}${results.B.van===bestVAN?' 🏆':''}</span>
+    </div>
+    <div class="calc-result-row">
+      <span class="label">VAN — Projet C</span>
+      <span class="value ${results.C.van===bestVAN?'pos':''}">${fmt(results.C.van)}${results.C.van===bestVAN?' 🏆':''}</span>
+    </div>
+    <div class="calc-result-row">
+      <span class="label">DR — Projet A</span>
+      <span class="value ${results.A.dr===bestDR?'pos':''}">${fmtAns(results.A.dr)}${results.A.dr===bestDR?' 🏆':''}</span>
+    </div>
+    <div class="calc-result-row">
+      <span class="label">DR — Projet B</span>
+      <span class="value ${results.B.dr===bestDR?'pos':''}">${fmtAns(results.B.dr)}${results.B.dr===bestDR?' 🏆':''}</span>
+    </div>
+    <div class="calc-result-row">
+      <span class="label">DR — Projet C</span>
+      <span class="value ${results.C.dr===bestDR?'pos':''}">${fmtAns(results.C.dr)}${results.C.dr===bestDR?' 🏆':''}</span>
+    </div>
+    <div class="calc-result-row">
+      <span class="label">DRA — Projet A</span>
+      <span class="value ${results.A.dra===bestDRA?'pos':''}">${fmtAns(results.A.dra)}${results.A.dra===bestDRA?' 🏆':''}</span>
+    </div>
+    <div class="calc-result-row">
+      <span class="label">DRA — Projet B</span>
+      <span class="value ${results.B.dra===bestDRA?'pos':''}">${fmtAns(results.B.dra)}${results.B.dra===bestDRA?' 🏆':''}</span>
+    </div>
+    <div class="calc-result-row">
+      <span class="label">DRA — Projet C</span>
+      <span class="value ${results.C.dra===bestDRA?'pos':''}">${fmtAns(results.C.dra)}${results.C.dra===bestDRA?' 🏆':''}</span>
+    </div>
+  `;
+  r.classList.add('show');
+
+  showDetailedTables(results, bestVAN, bestDR, bestDRA);
+}
+
+function showDetailedTables(results, bestVAN, bestDR, bestDRA) {
+  document.getElementById('compare-placeholder').style.display = 'none';
+  document.getElementById('compare-section').style.display = 'block';
+
+  const buildVANRows = (name) => {
+    const p = projects[name];
+    let rows = '';
+    let cumul = -p.invest;
+    rows += `<tr><td>Investissement</td><td class="td-neg">${fmt(-p.invest)}</td><td>—</td><td class="td-neg">${fmt(-p.invest)}</td><td class="td-neg">${fmt(cumul)}</td></tr>`;
+    p.flows.forEach((f, i) => {
+      const fa = Math.pow(1+ex_k, -(i+1));
+      const pvf = f * fa;
+      cumul += pvf;
+      rows += `<tr><td>An ${i+1}</td><td>${fmt(f)}</td><td>${fa.toFixed(4)}</td><td>${fmt(pvf)}</td><td class="${cumul>=0?'td-pos':'td-neg'}">${fmt(cumul)}</td></tr>`;
+    });
+    rows += `<tr style="font-weight:800"><td>VAN</td><td></td><td></td><td></td><td class="${results[name].van>=0?'td-pos':'td-neg'}">${fmt(results[name].van)}</td></tr>`;
+    return rows;
+  };
+
+  document.getElementById('van-table').innerHTML = `
+    <h3 style="font-size:15px;font-weight:700;color:#1e1b4b;margin-bottom:10px">📈 Calcul de la VAN (k = 10%)</h3>
+    <div class="tbl-wrap"><table><thead><tr><th></th><th>Flux (A)</th><th>FA</th><th>VA flux (A)</th><th>VA cumul (A)</th></tr></thead><tbody>${buildVANRows('A')}</tbody></table></div>
+    <div class="tbl-wrap" style="margin-top:12px"><table><thead><tr><th></th><th>Flux (B)</th><th>FA</th><th>VA flux (B)</th><th>VA cumul (B)</th></tr></thead><tbody>${buildVANRows('B')}</tbody></table></div>
+    <div class="tbl-wrap" style="margin-top:12px"><table><thead><tr><th></th><th>Flux (C)</th><th>FA</th><th>VA flux (C)</th><th>VA cumul (C)</th></tr></thead><tbody>${buildVANRows('C')}</tbody></table></div>
+  `;
+
+  const buildDRRows = (name) => {
+    const p = projects[name];
+    let rows = '';
+    let cumul = -p.invest;
+    rows += `<tr><td>Investissement</td><td class="td-neg">${fmt(-p.invest)}</td><td class="td-neg">${fmt(cumul)}</td></tr>`;
+    p.flows.forEach((f, i) => {
+      cumul += f;
+      rows += `<tr><td>An ${i+1}</td><td>${fmt(f)}</td><td class="${cumul>=0?'td-pos':'td-neg'}">${fmt(cumul)}</td></tr>`;
+    });
+    rows += `<tr style="font-weight:800"><td>DR</td><td></td><td class="${results[name].dr===bestDR?'td-best':''}">${fmtAns(results[name].dr)}</td></tr>`;
+    return rows;
+  };
+
+  document.getElementById('dr-table').innerHTML = `
+    <h3 style="font-size:15px;font-weight:700;color:#1e1b4b;margin-bottom:10px">⏱️ Délai de Récupération (flux NON actualisés)</h3>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+      <div class="tbl-wrap"><table><thead><tr><th colspan="3">Projet A</th></tr><tr><th></th><th>Flux</th><th>Cumul</th></tr></thead><tbody>${buildDRRows('A')}</tbody></table></div>
+      <div class="tbl-wrap"><table><thead><tr><th colspan="3">Projet B</th></tr><tr><th></th><th>Flux</th><th>Cumul</th></tr></thead><tbody>${buildDRRows('B')}</tbody></table></div>
+      <div class="tbl-wrap"><table><thead><tr><th colspan="3">Projet C</th></tr><tr><th></th><th>Flux</th><th>Cumul</th></tr></thead><tbody>${buildDRRows('C')}</tbody></table></div>
+    </div>
+  `;
+
+  const buildDRARows = (name) => {
+    const p = projects[name];
+    let rows = '';
+    let cumul = -p.invest;
+    rows += `<tr><td>Investissement</td><td class="td-neg">${fmt(-p.invest)}</td><td>—</td><td class="td-neg">${fmt(cumul)}</td></tr>`;
+    p.flows.forEach((f, i) => {
+      const fa = Math.pow(1+ex_k, -(i+1));
+      const pvf = f * fa;
+      cumul += pvf;
+      rows += `<tr><td>An ${i+1}</td><td>${fmt(f)}</td><td>${fmt(pvf)}</td><td class="${cumul>=0?'td-pos':'td-neg'}">${fmt(cumul)}</td></tr>`;
+    });
+    const dra = results[name].dra;
+    rows += `<tr style="font-weight:800"><td>DRA</td><td></td><td></td><td class="${dra===bestDRA?'td-best':''}">${dra!==null?fmtAns(dra):'N/A'}</td></tr>`;
+    return rows;
+  };
+
+  document.getElementById('dra-table').innerHTML = `
+    <h3 style="font-size:15px;font-weight:700;color:#1e1b4b;margin-bottom:10px">⏱️✨ Délai de Récupération Actualisé (flux actualisés)</h3>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+      <div class="tbl-wrap"><table><thead><tr><th colspan="4">Projet A</th></tr><tr><th></th><th>Flux</th><th>VA flux</th><th>VA cumul</th></tr></thead><tbody>${buildDRARows('A')}</tbody></table></div>
+      <div class="tbl-wrap"><table><thead><tr><th colspan="4">Projet B</th></tr><tr><th></th><th>Flux</th><th>VA flux</th><th>VA cumul</th></tr></thead><tbody>${buildDRARows('B')}</tbody></table></div>
+      <div class="tbl-wrap"><table><thead><tr><th colspan="4">Projet C</th></tr><tr><th></th><th>Flux</th><th>VA flux</th><th>VA cumul</th></tr></thead><tbody>${buildDRARows('C')}</tbody></table></div>
+    </div>
+  `;
+
+  document.getElementById('decision-box').innerHTML = `
+    <div class="highlight purple">
+      <strong>💡 Analyse de décision :</strong><br><br>
+      <strong>Selon la VAN :</strong> Projet A (${fmt(results.A.van)}) 🏆 — Meilleure création de valeur absolue<br>
+      <strong>Selon le DR :</strong> Projet B (${fmtAns(results.B.dr)}) 🏆 — Récupération la plus rapide<br>
+      <strong>Selon le DRA :</strong> Projet B (${fmtAns(results.B.dra)}) 🏆 — Récupération actualisée la plus rapide<br><br>
+      <strong>Recommandation :</strong> Le <strong>Projet A</strong> est préférable si l'on priorise la <strong>VAN</strong> (critère principal). Le Projet B est préférable si la <strong>liquidité / récupération rapide</strong> est prioritaire.<br><br>
+      ⚠️ Si les projets sont <strong>mutuellement exclusifs</strong>, on choisit généralement sur base de la VAN → <strong>Projet A</strong>.
+    </div>
+  `;
+}
+
+function calculateCustomVAN() {
+  const invest = parseFloat(document.getElementById('c-invest').value) || 0;
+  const flux = parseFloat(document.getElementById('c-flux').value) || 0;
+  const taux = (parseFloat(document.getElementById('c-taux').value) || 10) / 100;
+  const n = parseInt(document.getElementById('c-annees').value) || 1;
+
+  const fa = (1 - Math.pow(1 + taux, -n)) / taux;
+  const va = flux * fa;
+  const van = va - invest;
+
+  document.getElementById('r-invest').textContent = fmt(-invest);
+  document.getElementById('r-invest').className = 'value neg';
+  document.getElementById('r-fa').textContent = fa.toFixed(4);
+  document.getElementById('r-fa').className = 'value';
+  document.getElementById('r-va').textContent = fmt(va);
+  document.getElementById('r-va').className = 'value pos';
+  document.getElementById('r-van').textContent = fmt(van);
+  document.getElementById('r-van').className = van >= 0 ? 'value pos' : 'value neg';
+
+  document.getElementById('custom-result').classList.add('show');
+}
+
+// ── DPA Calculator ──
+function calcDPA() {
+  const C  = parseFloat(document.getElementById('c-cout').value) || 100000;
+  const d  = parseFloat(document.getElementById('c-dpa').value) / 100  || 0.30;
+  const TI = parseFloat(document.getElementById('c-ti').value)  / 100  || 0.40;
+  const r  = parseFloat(document.getElementById('c-ta').value)  / 100  || 0.10;
+  const n  = parseInt(document.getElementById('c-n').value) || 5;
+
+  let fnacc = C;
+  let totalVA = 0;
+  let body = '';
+
+  for (let t = 1; t <= n; t++) {
+    const fStart = t === 1 ? fnacc * 0.5 : fnacc;
+    const dpa    = fStart * d;
+    const fEnd   = t === 1 ? fnacc - dpa : fnacc - dpa;
+    const eco    = dpa * TI;
+    const factor = Math.pow(1 + r, t);
+    const va     = eco / factor;
+    totalVA += va;
+
+    body += `<tr>
+      <td>${t}${t===1?' *':''}</td>
+      <td class="td-right">${fmt(Math.round(fStart))}</td>
+      <td class="td-right">${fmt(Math.round(dpa))}</td>
+      <td class="td-right">${fmt(Math.round(fEnd))}</td>
+      <td class="td-right">${fmt(Math.round(eco))}</td>
+      <td class="td-right">${(1/factor).toFixed(4)}</td>
+      <td class="td-right"><strong>${fmt(Math.round(va))}</strong></td>
+    </tr>`;
+    fnacc = fEnd;
+  }
+  body += `<tr class="total-row">
+    <td colspan="6"><strong>VA totale des économies d'impôt</strong></td>
+    <td class="td-right"><strong>${fmt(Math.round(totalVA))}</strong></td>
+  </tr>`;
+
+  document.getElementById('calc-body').innerHTML = body;
+  document.getElementById('calc-total').innerHTML = `<strong>✅ VA totale des économies d'impôt = ${fmt(Math.round(totalVA))}</strong><br><span style="font-size:13px">* An 1 : règle de la demi-année appliquée (50 % de la base).</span>`;
+  document.getElementById('calc-result').style.display = 'block';
+}
+
+// ── VAN Calculator ──
+function generateVanFields() {
+  const n = parseInt(document.getElementById('v-n').value) || 5;
+  let html = '';
+  for(let i=1; i<=n; i++) {
+    html += `
+      <div class="calc-group">
+        <label>Flux Monétaire An ${i}</label>
+        <input type="number" id="v-cf${i}" value="30000">
+        <div class="unit">Total des entrées moins sorties ($)</div>
+      </div>
+    `;
+  }
+  document.getElementById('van-dynamic-fields').innerHTML = html;
+}
+
+function calcVAN() {
+  const inv = parseFloat(document.getElementById('v-inv').value) || 0;
+  const r = parseFloat(document.getElementById('v-taux').value) / 100 || 0.10;
+  const n = parseInt(document.getElementById('v-n').value) || 5;
+
+  let totalVA = 0;
+  let body = `<tr>
+    <td>0</td>
+    <td class="td-right td-neg">${fmt(-inv)}</td>
+    <td class="td-right">1.0000</td>
+    <td class="td-right td-neg">${fmt(-inv)}</td>
+  </tr>`;
+  totalVA -= inv;
+
+  for(let t=1; t<=n; t++) {
+    const cf = parseFloat(document.getElementById('v-cf'+t).value) || 0;
+    const factor = Math.pow(1+r, t);
+    const va = cf / factor;
+    totalVA += va;
+    const colorClass = va >= 0 ? 'td-pos' : 'td-neg';
+    const cfColorClass = cf >= 0 ? 'td-pos' : 'td-neg';
+    
+    body += `<tr>
+      <td>${t}</td>
+      <td class="td-right ${cfColorClass}">${fmt(cf)}</td>
+      <td class="td-right">${(1/factor).toFixed(4)}</td>
+      <td class="td-right ${colorClass}">${fmt(Math.round(va))}</td>
+    </tr>`;
+  }
+
+  body += `<tr class="total-row">
+    <td colspan="3"><strong>VALEUR ACTUELLE NETTE (VAN)</strong></td>
+    <td class="td-right ${totalVA >= 0 ? 'td-pos' : 'td-neg'}"><strong>${fmt(Math.round(totalVA))}</strong></td>
+  </tr>`;
+
+  document.getElementById('van-body').innerHTML = body;
+
+  const resDiv = document.getElementById('van-total');
+  if(totalVA >= 0) {
+    resDiv.className = "highlight green";
+    resDiv.innerHTML = `<strong>✅ Projet Acceptable !</strong> La VAN est positive (+ ${fmt(Math.round(totalVA))}). Ce projet crée de la valeur pour l'entreprise.`;
+  } else {
+    resDiv.className = "highlight red";
+    resDiv.innerHTML = `<strong>❌ Projet Rejeté !</strong> La VAN est négative (${fmt(Math.round(totalVA))}). Ce projet détruit de la valeur pour l'entreprise.`;
+  }
+  document.getElementById('van-result-container').style.display = 'block';
+}
+
+// ── Acronymes JS ──
+const acrData = [
+  { sigle: "VAN", nom: "Valeur Actuelle Nette", anglais: "NPV — Net Present Value", definition: "Somme de tous les flux de trésorerie actualisés d'un projet, moins l'investissement initial. Mesure la création de valeur en dollars d'aujourd'hui.", formule: "VAN = Σ [ Flux_t ÷ (1 + r)^t ] − Investissement initial", regle: "VAN > 0 → on accepte le projet  |  VAN < 0 → on rejette", emoji: "📊", color: "#6366f1", bg: "#ede9fe" },
+  { sigle: "CMPC", nom: "Coût Moyen Pondéré du Capital", anglais: "WACC — Weighted Average Cost of Capital", definition: "Taux de rendement minimum qu'un projet doit générer pour satisfaire tous les apporteurs de fonds (créanciers + actionnaires). Utilisé comme taux d'actualisation dans la VAN.", formule: "CMPC = (D/V × Kd × (1−t)) + (E/V × Ke)", regle: "C'est le taux 'r' utilisé dans la formule de la VAN. Reflète le risque du projet.", emoji: "⚖️", color: "#0891b2", bg: "#e0f2fe" },
+  { sigle: "DPA", nom: "Déduction pour Amortissement", anglais: "CCA — Capital Cost Allowance", definition: "Méthode d'amortissement fiscal canadienne sur solde dégressif. Permet à l'entreprise de déduire la perte de valeur d'un actif pour réduire son impôt à payer.", formule: "DPA = FNACC × taux DPA (ex : 30 %)", regle: "An 1 : règle de la demi-année → on amortit seulement 50 % de la base normalement.", emoji: "🏛️", color: "#059669", bg: "#d1fae5" },
+  { sigle: "FNACC", nom: "Fraction Non Amortie du Coût en Capital", anglais: "UCC — Undepreciated Capital Cost", definition: "Valeur fiscale résiduelle d'un actif après déduction de toutes les DPA accumulées. C'est la base sur laquelle on calcule la DPA de l'année suivante.", formule: "FNACC_t = FNACC_(t-1) − DPA_(t-1)", regle: "Chaque année, la FNACC diminue → les DPA diminuent aussi (méthode dégressive).", emoji: "📉", color: "#7c3aed", bg: "#ede9fe" },
+  { sigle: "TRI", nom: "Taux de Rendement Interne", anglais: "IRR — Internal Rate of Return", definition: "Taux d'actualisation pour lequel la VAN est exactement zéro. Représente le rendement implicite du projet.", formule: "TRI = taux 'r' tel que VAN = 0", regle: "TRI > CMPC → on accepte  |  TRI < CMPC → on rejette", emoji: "🎯", color: "#dc2626", bg: "#fee2e2" },
+  { sigle: "DR", nom: "Délai de Récupération (simple)", anglais: "PP — Payback Period", definition: "Nombre d'années nécessaires pour que les flux de trésorerie NON actualisés remboursent entièrement l'investissement initial.", formule: "DR = année + (montant restant ÷ flux de l'année suivante)", regle: "Avantage : simple à calculer. Limite : ignore la valeur temporelle et les flux après récupération.", emoji: "⏱️", color: "#d97706", bg: "#fef3c7" },
+  { sigle: "DRA", nom: "Délai de Récupération Actualisé", anglais: "DPP — Discounted Payback Period", definition: "Nombre d'années pour rembourser l'investissement avec des flux ACTUALISÉS. Toujours plus long que le DR simple car les flux actualisés sont réduits.", formule: "Même logique que DR mais avec : Flux_t ÷ (1 + r)^t", regle: "Plus réaliste que le DR simple. Élimine l'incertitude des flux éloignés.", emoji: "📆", color: "#0891b2", bg: "#e0f2fe" },
+  { sigle: "FM / FT", nom: "Flux Monétaires / Flux de Trésorerie", anglais: "CF — Cash Flow", definition: "Mouvements réels d'argent (entrées et sorties) liés au projet. Attention : ≠ bénéfice comptable. On inclut uniquement les flux ADDITIONNELS et MONÉTAIRES.", formule: "FM = Revenus additionnels − Coûts additionnels − Impôts additionnels", regle: "Toujours raisonner en flux APRÈS impôt dans le calcul de la VAN.", emoji: "💸", color: "#059669", bg: "#d1fae5" },
+  { sigle: "TI", nom: "Taux d'Imposition", anglais: "Tax Rate", definition: "Pourcentage des bénéfices imposables prélevé par les gouvernements (fédéral + provincial). Intervient dans le calcul des flux nets et des économies d'impôt.", formule: "Impôt = Revenu imposable × TI", regle: "Flux après impôt = Flux avant impôt × (1 − TI)", emoji: "🏦", color: "#dc2626", bg: "#fee2e2" },
+  { sigle: "TA", nom: "Taux d'Actualisation", anglais: "Discount Rate", definition: "Taux utilisé pour ramener des flux futurs à leur valeur présente. En pratique, c'est souvent le CMPC. Reflète le coût du capital et le risque du projet.", formule: "Facteur d'actualisation = 1 ÷ (1 + TA)^t", regle: "Plus le TA est élevé, plus les flux futurs valent peu aujourd'hui.", emoji: "🔢", color: "#7c3aed", bg: "#ede9fe" },
+  { sigle: "RA", nom: "Récupération d'Amortissement", anglais: "CCA Recapture", definition: "Montant imposable quand un actif est vendu à un prix SUPÉRIEUR à sa FNACC. L'entreprise a sur-amorti fiscalement et doit rembourser cet avantage.", formule: "RA = Prix de vente − FNACC (si positif et classe fermée)", regle: "RA → imposable à 100 %. Perte finale (inverse) → déductible à 100 %.", emoji: "📤", color: "#d97706", bg: "#fef3c7" },
+  { sigle: "BAII", nom: "Bénéfice Avant Intérêts et Impôts", anglais: "EBIT — Earnings Before Interest and Taxes", definition: "Résultat d'exploitation avant déduction des charges financières et des impôts. Indicateur de la performance opérationnelle indépendamment du financement.", formule: "BAII = Revenus − Coûts d'exploitation − Amortissement", regle: "Attention : le BAII inclut l'amortissement (non monétaire) → ≠ flux de trésorerie.", emoji: "📈", color: "#0891b2", bg: "#e0f2fe" }
+];
+
+let acrActiveIndex = null;
+
+function renderAcrCards(filter = "") {
+  const grid = document.getElementById("acr-grid");
+  const noResult = document.getElementById("acr-no-result");
+  grid.innerHTML = "";
+  const q = filter.toLowerCase();
+  const filtered = acrData.filter(a =>
+    a.sigle.toLowerCase().includes(q) ||
+    a.nom.toLowerCase().includes(q) ||
+    a.anglais.toLowerCase().includes(q) ||
+    a.definition.toLowerCase().includes(q)
+  );
+
+  if (filtered.length === 0) {
+    noResult.style.display = "block";
+    hideAcrDetail();
+    return;
+  }
+  noResult.style.display = "none";
+
+  filtered.forEach((a) => {
+    const card = document.createElement("div");
+    card.className = "acr-card" + (acrActiveIndex === a.sigle ? " active" : "");
+    card.style.setProperty("--c", a.color);
+    card.innerHTML = `
+      <div class="emoji">${a.emoji}</div>
+      <div class="sigle">${a.sigle}</div>
+      <div class="nom">${a.nom}</div>
+    `;
+    card.addEventListener("click", () => {
+      if (acrActiveIndex === a.sigle) {
+        acrActiveIndex = null;
+        hideAcrDetail();
+        renderAcrCards(filter);
+      } else {
+        acrActiveIndex = a.sigle;
+        showAcrDetail(a);
+        renderAcrCards(filter);
+      }
+    });
+    grid.appendChild(card);
+  });
+}
+
+function showAcrDetail(a) {
+  const el = document.getElementById("acr-detail");
+  el.style.display = "block";
+  document.getElementById("ad-anglais").textContent = a.anglais;
+  document.getElementById("ad-sigle").textContent = a.sigle;
+  document.getElementById("ad-sigle").style.color = a.color;
+  document.getElementById("ad-nom").textContent = a.nom;
+  document.getElementById("ad-emoji").textContent = a.emoji;
+  document.getElementById("ad-definition").textContent = a.definition;
+  document.getElementById("ad-formule").textContent = a.formule;
+  document.getElementById("ad-formule-box").style.background = a.bg;
+  document.getElementById("ad-formule-label").style.color = a.color;
+  document.getElementById("ad-regle-box").style.borderLeft = `4px solid ${a.color}`;
+  document.getElementById("ad-regle").textContent = a.regle;
+  el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function hideAcrDetail() {
+  document.getElementById("acr-detail").style.display = "none";
+}
+
+document.getElementById("acr-btn-close").addEventListener("click", () => {
+  acrActiveIndex = null;
+  hideAcrDetail();
+  renderAcrCards(document.getElementById("acr-search").value);
+});
+
+document.getElementById("acr-search").addEventListener("input", (e) => {
+  acrActiveIndex = null;
+  hideAcrDetail();
+  renderAcrCards(e.target.value);
+});
+
+renderAcrCards();
+
+// ── Quiz Partie 1 (Vrai ou Faux) JS ──
+const qvf_questions = [
+  { q: "1. L’analyse marginale prend en compte l’ensemble des flux de trésorerie du projet, incluant ceux déjà existants.", ans: 1, exp: "Faux. Elle ne prend en compte que les flux DIFFÉRENTIELS (additionnels), c'est-à-dire ceux qui changent uniquement à cause du projet." },
+  { q: "2. Au Canada, les gouvernements reconnaissent la dépense reliée à l’amortissement. Puisque cette dépense est une sortie de fonds, elle doit être incluse dans le calcul du flux de trésorerie.", ans: 1, exp: "Faux. La DPA est une charge comptable NON MONÉTAIRE (aucune sortie de fonds ne se produit). On inclut seulement l'économie d'impôt qu'elle génère." },
+  { q: "3. Le coût d’achat de matières premières utilisées immédiatement dans la production est un coût amortissable.", ans: 1, exp: "Faux. C'est une dépense courante (d'exploitation) et non un investissement en capital immobilisé." },
+  { q: "4. L’achat d’un équipement utilisé pendant plusieurs années est un coût amortissable.", ans: 0, exp: "Vrai. C'est un investissement en capital qui perd de la valeur dans le temps et s'amortit." },
+  { q: "5. Dans un contexte d’analyse financière de projet (VAN), il faut inclure les frais financiers comme les intérêts sur emprunt dans les flux de trésorerie.", ans: 1, exp: "Faux. Les frais financiers sont déjà intégrés et reflétés dans le taux d'actualisation (le CMPC)." },
+  { q: "6. Le taux d'actualisation pertinent est le taux sans risque, dont l'estimation est souvent faite par le rendement obtenu sur les Bons du Trésor.", ans: 1, exp: "Faux. Le taux pertinent pour un projet est le CMPC (qui inclut une prime de risque), pas le taux sans risque." },
+  { q: "7. Seule la durée physique permet d’évaluer la durée (horizon en années) d’un projet à évaluer.", ans: 1, exp: "Faux. L'horizon peut aussi être déterminé par la durée technologique (obsolescence), économique ou contractuelle." },
+  { q: "8. Le délai de récupération actualisé correspond à la période nécessaire pour que les flux monétaires comblent complètement le déboursé d'investissement initial.", ans: 1, exp: "Faux. Il utilise les flux monétaires ACTUALISÉS, et non simplement les flux monétaires nominaux." },
+  { q: "9. Le délai récupération actualisé, permet, entre autres, d’éliminer les flux monétaires éloignés qui comportent plus d’incertitude aux yeux des investisseurs.", ans: 0, exp: "Vrai. En ignorant les flux postérieurs à la récupération, cette méthode agit comme une protection contre l'incertitude des prévisions lointaines." },
+  { q: "10. Parmi les différentes méthodes d’analyse financière de projets, la VAN est celle qui fait généralement l’unanimité chez les analystes.", ans: 0, exp: "Vrai. La VAN est considérée comme la méthode la plus rigoureuse car elle mesure la création directe de valeur en dollars." },
+  { q: "11. L'analyse de sensibilité consiste à modifier simultanément plusieurs variables pour observer l'impact global sur la VAN du projet.", ans: 1, exp: "Faux. L'analyse de sensibilité modifie UNE SEULE variable à la fois pour isoler et comprendre son impact spécifique." },
+  { q: "12. Le risque financier est le risque supplémentaire attribuable à l'utilisation de modes de financement nécessitant des déboursés fixes, comme l'endettement.", ans: 0, exp: "Vrai. C'est le risque lié à la structure de capital de l'entreprise et à ses obligations de remboursement." },
+  { q: "13. Si un nouveau projet est plus risqué que les activités habituelles de l'entreprise, on doit l'évaluer en utilisant un taux d'actualisation inférieur au CMPC.", ans: 1, exp: "Faux. Un risque plus élevé exige un rendement plus élevé. Il faut donc utiliser un taux d'actualisation SUPÉRIEUR au CMPC." },
+  { q: "14. Lors de l'acquisition d'un équipement (An 1), la règle de la demi-année canadienne permet de déduire 50 % du coût total de l'équipement en tant que DPA.", ans: 1, exp: "Faux. Elle permet de déduire 50 % de la DPA NORMALE (on applique le taux d'amortissement sur la moitié de la base), et non 50 % du coût total." },
+  { q: "15. Une perte finale survient lorsque le prix de vente d'un actif est inférieur à sa FNACC et que la classe d'actif est fermée à la suite de la vente.", ans: 0, exp: "Vrai. Cette perte finale est alors entièrement déductible et génère une économie d'impôt positive dans la VAN." },
+  { q: "16. La récupération d'amortissement est un montant imposable généré lorsque le prix de vente est supérieur au coût d'acquisition initial de l'actif.", ans: 1, exp: "Faux. Elle est générée lorsque le prix de vente est supérieur à la FNACC (mais inférieur au coût). Si le prix dépasse le coût d'acquisition, l'excédent est un gain en capital." },
+  { q: "17. Les coûts irrécupérables (sunk costs) préalables doivent toujours être inclus dans la sortie de fonds initiale à l'étape 1 du projet.", ans: 1, exp: "Faux. Ils doivent être absolument exclus, car ils ont déjà été engagés peu importe la décision d'accepter ou de rejeter le projet actuel." },
+  { q: "18. L'investissement dans le fonds de roulement au début d'un projet est traité comme une sortie de fonds à l'année 0, qui sera généralement récupérée à la fin.", ans: 0, exp: "Vrai. Le besoin en BFR mobilise des liquidités (sortie de fonds) qui sont relâchées (entrée de fonds) à la fin du projet." },
+  { q: "19. Le Taux de Rendement Interne (TRI) est défini comme le taux d'actualisation mathématique pour lequel la VAN du projet est exactement égale à zéro.", ans: 0, exp: "Vrai. C'est la définition même du TRI." },
+  { q: "20. Un projet dont le TRI calculé est inférieur au taux de rendement exigé (CMPC) par l'entreprise devrait généralement être accepté.", ans: 1, exp: "Faux. Si le TRI est inférieur au CMPC, le projet détruit de la valeur (la VAN est négative) et il doit donc être rejeté." }
+];
+
+const qvf_opts = ["Vrai", "Faux"];
+let qvf_idx = 0, qvf_selected = null, qvf_confirmed = false, qvf_score = 0, qvf_answers = [];
+
+function qvf_renderDots() {
+  const el = document.getElementById("qvf-dots");
+  el.innerHTML = "";
+  qvf_questions.forEach((_, i) => {
+    const d = document.createElement("div");
+    d.className = "qp1-dot" + (i === qvf_idx ? " active" : i < qvf_answers.length ? (qvf_answers[i] ? " done-ok" : " done-ko") : "");
+    el.appendChild(d);
+  });
+}
+
+function qvf_render() {
+  const q = qvf_questions[qvf_idx];
+  document.getElementById("qvf-q-text").textContent = q.q;
+  document.getElementById("qvf-prog-label").textContent = "Question " + (qvf_idx+1) + " / " + qvf_questions.length;
+  document.getElementById("qvf-score-label").textContent = "Score : " + qvf_score + " ✓";
+  document.getElementById("qvf-prog-fill").style.width = (qvf_idx / qvf_questions.length * 100) + "%";
+
+  const opts = document.getElementById("qvf-options");
+  opts.innerHTML = "";
+  qvf_opts.forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "qp1-option";
+    div.innerHTML = '<span class="qp1-letter">' + (i === 0 ? 'V' : 'F') + '</span><span>' + opt + '</span>';
+    div.onclick = () => qvf_selectOpt(i);
+    opts.appendChild(div);
+  });
+
+  document.getElementById("qvf-explanation").className = "qp1-explanation";
+  document.getElementById("qvf-btn-main").disabled = true;
+  document.getElementById("qvf-btn-main").className = "qp1-btn-validate";
+  document.getElementById("qvf-btn-main").textContent = "Valider ma réponse";
+  qvf_selected = null; qvf_confirmed = false;
+  qvf_renderDots();
+}
+
+function qvf_selectOpt(i) {
+  if (qvf_confirmed) return;
+  qvf_selected = i;
+  const parent = document.getElementById("qvf-options");
+  parent.querySelectorAll(".qp1-option").forEach((el, j) => {
+    el.className = "qp1-option" + (j === i ? " selected" : "");
+    el.querySelector(".qp1-letter").textContent = (j === 0 ? 'V' : 'F');
+  });
+  const btn = document.getElementById("qvf-btn-main");
+  btn.disabled = false;
+  btn.className = "qp1-btn-validate ready";
+}
+
+function qvf_handleMain() {
+  if (!qvf_confirmed) {
+    qvf_confirmed = true;
+    const q = qvf_questions[qvf_idx];
+    const isOk = qvf_selected === q.ans;
+    if (isOk) qvf_score++;
+    qvf_answers.push(isOk);
+
+    const parent = document.getElementById("qvf-options");
+    parent.querySelectorAll(".qp1-option").forEach((el, i) => {
+      if (i === q.ans) el.className = "qp1-option correct";
+      else if (i === qvf_selected) el.className = "qp1-option wrong";
+      else el.className = "qp1-option disabled";
+      const l = el.querySelector(".qp1-letter");
+      if (i === q.ans) l.textContent = "✓";
+      else if (i === qvf_selected && !isOk) l.textContent = "✗";
+      else l.textContent = (i === 0 ? 'V' : 'F');
+    });
+
+    const exp = document.getElementById("qvf-explanation");
+    exp.className = "qp1-explanation show " + (isOk ? "ok" : "ko");
+    document.getElementById("qvf-exp-title").textContent = isOk ? "✅ Bonne réponse !" : "💡 Pas tout à fait :";
+    document.getElementById("qvf-exp-title").style.color = isOk ? "#16a34a" : "#92400e";
+    document.getElementById("qvf-exp-text").textContent = q.exp;
+    document.getElementById("qvf-score-label").textContent = "Score : " + qvf_score + " ✓";
+
+    const btn = document.getElementById("qvf-btn-main");
+    btn.className = "qp1-btn-validate next";
+    btn.textContent = qvf_idx + 1 >= qvf_questions.length ? "Voir mes résultats →" : "Question suivante →";
+    qvf_renderDots();
+  } else {
+    if (qvf_idx + 1 >= qvf_questions.length) { qvf_showResults(); return; }
+    qvf_idx++;
+    qvf_render();
+  }
+}
+
+function qvf_showResults() {
+  document.getElementById("qvf-quiz-view").style.display = "none";
+  document.getElementById("qvf-results").style.display = "flex";
+  const pct = Math.round(qvf_score / qvf_questions.length * 100);
+  document.getElementById("qvf-r-medal").textContent = pct >= 80 ? "🏆" : pct >= 60 ? "👍" : "📖";
+  document.getElementById("qvf-r-msg").textContent = pct >= 80 ? "Excellent travail !" : pct >= 60 ? "Bon résultat, continue !" : "Revois les concepts et réessaie !";
+  document.getElementById("qvf-r-score").textContent = qvf_score + "/" + qvf_questions.length;
+  document.getElementById("qvf-r-pct").textContent = pct + " % de bonnes réponses";
+  const rd = document.getElementById("qvf-r-dots");
+  rd.innerHTML = "";
+  qvf_answers.forEach((ok, i) => {
+    const d = document.createElement("div");
+    d.className = "qp1-dot-r " + (ok ? "ok" : "ko");
+    d.textContent = ok ? "✓" : "✗";
+    rd.appendChild(d);
+  });
+}
+
+function qvf_restart() {
+  qvf_idx = 0; qvf_selected = null; qvf_confirmed = false; qvf_score = 0; qvf_answers = [];
+  document.getElementById("qvf-results").style.display = "none";
+  document.getElementById("qvf-quiz-view").style.display = "flex";
+  qvf_render();
+}
+
+// ── Quiz Partie 1 (Choix Multiples) JS ──
+const qp1_questions = [
+  { theme:"Analyse marginale", emoji:"📊", enonce:"Une entreprise possède une usine générant 500 000 $ de revenus. Elle envisage une nouvelle ligne de production. Quels flux doit-on analyser ?", options:["Tous les flux, incluant les 500 000 $ existants","Uniquement les flux additionnels générés par la nouvelle ligne","Les flux existants moins les nouveaux coûts","La moyenne des flux actuels et futurs"], bonne:1, explication:"L'analyse marginale ne retient que les flux DIFFÉRENTIELS — ce qui change à cause du projet. Les 500 000 $ existaient avant et existeraient sans le projet : ils sont hors champ." },
+  { theme:"DPA & flux de trésorerie", emoji:"🏦", enonce:"Une entreprise amortit un équipement à hauteur de 30 000 $ via la DPA. Quel est l'impact DIRECT sur les flux de trésorerie ?", options:["Sortie de fonds de 30 000 $","Aucun impact direct — la DPA n'est pas monétaire","Entrée de fonds de 30 000 $","Réduction des flux de 30 000 $ × taux d'imposition"], bonne:1, explication:"La DPA est une charge COMPTABLE non monétaire — aucun chèque n'est émis. Son impact passe par l'économie d'impôt (DPA × taux d'imposition), pas par la DPA elle-même." },
+  { theme:"Économie d'impôt", emoji:"💰", enonce:"Un équipement génère une DPA de 45 000 $ l'année 2. Le taux d'imposition est de 40 %. Quelle est l'économie d'impôt ?", options:["45 000 $","27 000 $","18 000 $","11 250 $"], bonne:2, explication:"Économie d'impôt = DPA × taux d'imposition = 45 000 × 40 % = 18 000 $. C'est la seule valeur à inclure dans les flux de trésorerie." },
+  { theme:"Coûts amortissables", emoji:"⚙️", enonce:"Parmi ces dépenses, laquelle est un coût AMORTISSABLE ?", options:["10 000 $ de matières premières utilisées ce mois-ci","Salaires des employés de production pour janvier","Robot industriel acheté pour 200 000 $, utilisé sur 8 ans","Loyer mensuel de l'entrepôt"], bonne:2, explication:"L'amortissement s'applique aux actifs DURABLES utilisés sur plusieurs années. Les matières premières, salaires et loyers sont des charges d'exploitation courantes." },
+  { theme:"Frais financiers & VAN", emoji:"💸", enonce:"TechnoFab emprunte 150 000 $ à 6 % d'intérêt. Comment traite-t-on les intérêts de 9 000 $/an dans la VAN ?", options:["On les inclut comme sortie de fonds chaque année","On les déduit des flux avant impôt","On ne les inclut pas — ils sont déjà dans le taux d'actualisation","On les capitalise et déduit en fin de projet"], bonne:2, explication:"Les frais financiers sont intégrés dans le CMPC (taux d'actualisation). Les inclure dans les flux serait une double comptabilisation. La VAN sépare décision d'investissement et de financement." },
+  { theme:"Taux d'actualisation", emoji:"📉", enonce:"Quel taux d'actualisation utilise-t-on pour évaluer la VAN d'un projet en entreprise ?", options:["Le taux des Bons du Trésor canadiens","Le taux préférentiel de la Banque du Canada","Le CMPC (Coût Moyen Pondéré du Capital)","Le taux d'inflation"], bonne:2, explication:"Le CMPC représente le rendement minimum exigé par tous les apporteurs de fonds et reflète le risque du projet — contrairement au taux sans risque." },
+  { theme:"Taux d'actualisation", emoji:"🏛️", enonce:"Le rendement des obligations du gouvernement canadien est souvent utilisé comme estimation du :", options:["CMPC de l'entreprise","Taux d'inflation anticipé","Taux sans risque","Taux d'actualisation du projet"], bonne:2, explication:"Les obligations gouvernementales sont sans risque de défaut — elles servent de référence pour le taux sans risque. Mais ce taux n'est PAS à utiliser pour actualiser un projet risqué." },
+  { theme:"Durée d'un projet", emoji:"📅", enonce:"Une machine peut physiquement fonctionner 10 ans, mais un modèle supérieur sera disponible dans 3 ans. Quelle durée retient-on ?", options:["Obligatoirement 10 ans (durée physique)","3 ans si la durée technologique est économiquement pertinente","La moyenne : 6,5 ans","Toujours la durée la plus longue"], bonne:1, explication:"L'horizon peut être physique, technologique, économique ou contractuel. Si l'équipement devient obsolète dans 3 ans, c'est la durée technologique qui est économiquement pertinente." },
+  { theme:"Délai de récupération", emoji:"⏱️", enonce:"Un projet coûte 100 000 $. Flux : An 1 : 40 000 $, An 2 : 40 000 $, An 3 : 30 000 $. Quel est le délai de récupération SIMPLE ?", options:["2 ans exactement","2 ans et 8 mois","3 ans","2 ans et 6 mois"], bonne:1, explication:"Après 2 ans : 80 000 $ récupérés. Il manque 20 000 $. An 3 apporte 30 000 $. Fraction : 20 000 / 30 000 = 0,67 an ≈ 8 mois → Délai = 2 ans et 8 mois." },
+  { theme:"Délai actualisé vs simple", emoji:"🔢", enonce:"Pour un même projet, le délai de récupération ACTUALISÉ est-il plus court ou plus long que le délai SIMPLE ?", options:["Plus court — l'actualisation accélère la récupération","Identique — l'actualisation ne change pas la durée","Plus long — les flux actualisés sont inférieurs aux flux nominaux","Ça dépend du taux d'actualisation"], bonne:2, explication:"Actualiser les flux les RÉDUIT (un dollar futur vaut moins qu'un dollar aujourd'hui). Les flux actualisés récupèrent l'investissement plus lentement → le délai actualisé est TOUJOURS plus long." },
+  { theme:"VAN — interprétation", emoji:"✅", enonce:"La VAN d'un projet est calculée à −15 000 $. Quelle est la bonne interprétation ?", options:["Le projet génère une perte nette de 15 000 $ en cash","Le projet ne récupère pas l'investissement initial","Le projet ne satisfait pas le rendement minimum exigé et détruit de la valeur","Le projet devrait être accepté si le délai de récupération est court"], bonne:2, explication:"Une VAN négative signifie que le projet rapporte MOINS que le rendement minimum exigé (le CMPC). Il détruit de la valeur économique — on le rejette." },
+  { theme:"Coût irrécupérable", emoji:"🚫", enonce:"TechnoFab a dépensé 50 000 $ l'an dernier pour une étude de marché. Comment traite-t-on ce montant dans la VAN du projet ?", options:["On l'inclut comme sortie de fonds initiale","On l'amortit sur la durée du projet","On l'exclut — c'est un coût irrécupérable","On le déduit des flux des premières années"], bonne:2, explication:"Un coût irrécupérable (sunk cost) est une dépense DÉJÀ engagée, indépendamment de la décision future. Elle ne change rien → on l'EXCLUT systématiquement de l'analyse." },
+  { theme:"Règle de la demi-année", emoji:"🍂", enonce:"Équipement de 200 000 $, taux DPA de 20 %. Quelle est la DPA de l'ANNÉE 1 au Canada (règle de la demi-année) ?", options:["40 000 $ (200 000 × 20 %)","20 000 $ (200 000 × 20 % × 50 %)","30 000 $","10 000 $"], bonne:1, explication:"La règle canadienne de la demi-année : en An 1, on amortit seulement 50 % de la valeur normale. DPA An 1 = 200 000 × 20 % × 50 % = 20 000 $. Dès l'An 2, on applique le taux plein sur le solde." },
+  { theme:"Comparaison de méthodes", emoji:"⚖️", enonce:"Deux projets ont la même VAN. Projet A : délai de récupération 2 ans. Projet B : 4 ans. Lequel choisir ?", options:["Projet B — les flux sont mieux répartis","Projet A — il récupère plus vite, moins risqué","Indifférent — seule la VAN compte","Projet B — les flux éloignés sont plus fiables"], bonne:1, explication:"À VAN égale, on préfère le délai de récupération le plus COURT. Récupérer plus vite réduit le risque et améliore la liquidité. Projet A est préférable." },
+  { theme:"Disposition d'actif", emoji:"📤", enonce:"En fin de projet, un équipement est vendu 80 000 $. Sa FNACC est de 50 000 $ et la classe d'actif ferme. Quel est l'impact fiscal ?", options:["Aucun — la vente d'actif n'est pas imposée","Récupération d'amortissement de 30 000 $ → imposable","Perte finale de 30 000 $ → déductible","Gain en capital de 80 000 $ → imposable"], bonne:1, explication:"Vente (80 000 $) > FNACC (50 000 $) → écart de 30 000 $ = RÉCUPÉRATION D'AMORTISSEMENT, entièrement imposable. Si vente < FNACC et classe fermée → PERTE FINALE (déductible)." },
+];
+
+const qp1_LETTERS = ["A","B","C","D"];
+let qp1_idx = 0, qp1_selected = null, qp1_confirmed = false, qp1_score = 0, qp1_answers = [];
+
+function qp1_renderDots() {
+  const el = document.getElementById("qp1-dots");
+  el.innerHTML = "";
+  qp1_questions.forEach((_, i) => {
+    const d = document.createElement("div");
+    d.className = "qp1-dot" + (i === qp1_idx ? " active" : i < qp1_answers.length ? (qp1_answers[i] ? " done-ok" : " done-ko") : "");
+    el.appendChild(d);
+  });
+}
+
+function qp1_render() {
+  const q = qp1_questions[qp1_idx];
+  document.getElementById("qp1-q-badge").textContent = q.emoji + " " + q.theme;
+  document.getElementById("qp1-q-text").textContent = q.enonce;
+  document.getElementById("qp1-prog-label").textContent = "Question " + (qp1_idx+1) + " / " + qp1_questions.length;
+  document.getElementById("qp1-score-label").textContent = "Score : " + qp1_score + " ✓";
+  document.getElementById("qp1-prog-fill").style.width = (qp1_idx / qp1_questions.length * 100) + "%";
+
+  const opts = document.getElementById("qp1-options");
+  opts.innerHTML = "";
+  q.options.forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "qp1-option";
+    div.innerHTML = '<span class="qp1-letter">' + qp1_LETTERS[i] + '</span><span>' + opt + '</span>';
+    div.onclick = () => qp1_selectOpt(i);
+    opts.appendChild(div);
+  });
+
+  document.getElementById("qp1-explanation").className = "qp1-explanation";
+  document.getElementById("qp1-btn-main").disabled = true;
+  document.getElementById("qp1-btn-main").className = "qp1-btn-validate";
+  document.getElementById("qp1-btn-main").textContent = "Valider ma réponse";
+  qp1_selected = null; qp1_confirmed = false;
+  qp1_renderDots();
+}
+
+function qp1_selectOpt(i) {
+  if (qp1_confirmed) return;
+  qp1_selected = i;
+  document.querySelectorAll("#qp1-options .qp1-option").forEach((el, j) => {
+    el.className = "qp1-option" + (j === i ? " selected" : "");
+    el.querySelector(".qp1-letter").textContent = qp1_LETTERS[j];
+  });
+  const btn = document.getElementById("qp1-btn-main");
+  btn.disabled = false;
+  btn.className = "qp1-btn-validate ready";
+}
+
+function qp1_handleMain() {
+  if (!qp1_confirmed) {
+    qp1_confirmed = true;
+    const q = qp1_questions[qp1_idx];
+    const isOk = qp1_selected === q.bonne;
+    if (isOk) qp1_score++;
+    qp1_answers.push(isOk);
+
+    document.querySelectorAll("#qp1-options .qp1-option").forEach((el, i) => {
+      if (i === q.bonne) el.className = "qp1-option correct";
+      else if (i === qp1_selected) el.className = "qp1-option wrong";
+      else el.className = "qp1-option disabled";
+      const l = el.querySelector(".qp1-letter");
+      if (i === q.bonne) l.textContent = "✓";
+      else if (i === qp1_selected && !isOk) l.textContent = "✗";
+      else l.textContent = qp1_LETTERS[i];
+    });
+
+    const exp = document.getElementById("qp1-explanation");
+    exp.className = "qp1-explanation show " + (isOk ? "ok" : "ko");
+    document.getElementById("qp1-exp-title").textContent = isOk ? "✅ Bonne réponse !" : "💡 Pas tout à fait :";
+    document.getElementById("qp1-exp-title").style.color = isOk ? "#16a34a" : "#92400e";
+    document.getElementById("qp1-exp-text").textContent = q.explication;
+    document.getElementById("qp1-score-label").textContent = "Score : " + qp1_score + " ✓";
+
+    const btn = document.getElementById("qp1-btn-main");
+    btn.className = "qp1-btn-validate next";
+    btn.textContent = qp1_idx + 1 >= qp1_questions.length ? "Voir mes résultats →" : "Question suivante →";
+    qp1_renderDots();
+  } else {
+    if (qp1_idx + 1 >= qp1_questions.length) { qp1_showResults(); return; }
+    qp1_idx++;
+    qp1_render();
+  }
+}
+
+function qp1_showResults() {
+  document.getElementById("qp1-quiz-view").style.display = "none";
+  document.getElementById("qp1-results").style.display = "flex";
+  const pct = Math.round(qp1_score / qp1_questions.length * 100);
+  document.getElementById("qp1-r-medal").textContent = pct >= 80 ? "🏆" : pct >= 60 ? "👍" : "📖";
+  document.getElementById("qp1-r-msg").textContent = pct >= 80 ? "Excellent travail !" : pct >= 60 ? "Bon résultat, continue !" : "Revois les flashcards et réessaie !";
+  document.getElementById("qp1-r-score").textContent = qp1_score + "/" + qp1_questions.length;
+  document.getElementById("qp1-r-pct").textContent = pct + " % de bonnes réponses";
+  const rd = document.getElementById("qp1-r-dots");
+  rd.innerHTML = "";
+  qp1_answers.forEach((ok, i) => {
+    const d = document.createElement("div");
+    d.className = "qp1-dot-r " + (ok ? "ok" : "ko");
+    d.textContent = ok ? "✓" : "✗";
+    rd.appendChild(d);
+  });
+}
+
+function qp1_restart() {
+  qp1_idx = 0; qp1_selected = null; qp1_confirmed = false; qp1_score = 0; qp1_answers = [];
+  document.getElementById("qp1-results").style.display = "none";
+  document.getElementById("qp1-quiz-view").style.display = "flex";
+  qp1_render();
+}
+
+// ── Initialisation globale ──
+qvf_render();
+qp1_render();
+generateVanFields();
+
+</script>
+</body>
+</html>
